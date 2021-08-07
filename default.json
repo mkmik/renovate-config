@@ -1,0 +1,50 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Defaults for renovatebot",
+  "extends": [
+    "config:base",
+    ":maintainLockFilesWeekly",
+    ":rebaseStalePrs",
+    "docker:pinDigests",
+    "group:linters",
+    "group:recommended",
+    "helpers:pinGitHubActionDigests"
+  ],
+  "assignees": ["anguslees"],
+  "automergeType": "branch",
+  {
+    "description": "Automerge trivial updates",
+    "matchUpdateTypes": ["patch", "digest", "lockFileMaintenance"],
+    "automerge": true
+  },
+  {
+    "description": "Group Kubernetes packages",
+    "matchPackagePatterns": ["^kubernetes/", "^k8s\\.gcr\\.io/"],
+    "groupName": "Kubernetes packages"
+  },
+  "regexManagers": [
+    {
+      "description": "Update _VERSION variables in Dockerfiles",
+      "fileMatch": ["(^|/|\\.)Dockerfile$", "(^|/)Dockerfile\\.[^/]*$"],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>[a-z-]+?) depName=(?<depName>.+?)(?: lookupName=(?<lookupName>.+?))?(?: versioning=(?<versioning>[a-z-]+?))?\\s(?:ENV|ARG) .+?_VERSION=(?<currentValue>.+?)\\s"
+      ],
+      "versioningTemplate": "{{#if versioning}}{{versioning}}{{else}}semver{{/if}}"
+    },
+    {
+      "description": "Update _VERSION variables in shell scripts",
+      "fileMatch": ["\\.sh$"],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>[a-z-]+?) depName=(?<depName>.+?)(?: lookupName=(?<lookupName>.+?))?(?: versioning=(?<versioning>[a-z-]+?))?\\s[A-Z_]+?_VERSION=(?<currentValue>.+?)\\s"
+      ],
+      "versioningTemplate": "{{#if versioning}}{{versioning}}{{else}}semver{{/if}}"
+    },
+    {
+      "description": "Update version: variables in workflows",
+      "fileMatch": ["^\\.github\\/workflows\\/[^/]+\\.ya?ml$"],
+      "matchStrings": [
+        "\\s+version: (?<currentValue>.+?) #renovate: datasource=(?<datasource>[a-z-]+?) depName=(?<depName>.+?)(?: lookupName=(?<lookupName>.+?))?(?: versioning=(?<versioning>[a-z-]+?))?\\s"
+      ]
+    }
+  ]
+}
