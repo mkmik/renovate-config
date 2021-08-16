@@ -12,16 +12,18 @@
   ],
   "assignees": ["anguslees"],
   "automergeType": "branch",
-  {
-    "description": "Automerge trivial updates",
-    "matchUpdateTypes": ["patch", "digest", "lockFileMaintenance"],
-    "automerge": true
-  },
-  {
-    "description": "Group Kubernetes packages",
-    "matchPackagePatterns": ["^kubernetes/", "^k8s\\.gcr\\.io/"],
-    "groupName": "Kubernetes packages"
-  },
+  "packageRules": [
+    {
+      "description": "Automerge trivial updates",
+      "matchUpdateTypes": ["patch", "digest", "lockFileMaintenance"],
+      "automerge": true
+    },
+    {
+      "description": "Group Kubernetes packages",
+      "matchPackagePatterns": ["^kubernetes/", "^k8s\\.gcr\\.io/"],
+      "groupName": "Kubernetes packages"
+    },
+  ],
   "regexManagers": [
     {
       "description": "Update _VERSION variables in Dockerfiles",
