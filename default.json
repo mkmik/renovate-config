@@ -3,6 +3,7 @@
   "description": "Defaults for renovatebot",
   "extends": [
     "config:base",
+    ":disableDependencyDashboard",
     ":maintainLockFilesWeekly",
     ":rebaseStalePrs",
     "docker:pinDigests",
@@ -11,6 +12,8 @@
     "helpers:pinGitHubActionDigests"
   ],
   "assignees": ["anguslees"],
+  "includeForks": false,
+  "labels": ["dependencies"],
   "automergeType": "branch",
   "packageRules": [
     {
