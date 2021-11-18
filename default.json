@@ -11,6 +11,8 @@
     "helpers:pinGitHubActionDigests"
   ],
   "assignees": ["anguslees"],
+  "includeForks": false,
+  "labels": ["dependencies"],
   "automergeType": "branch",
   "packageRules": [
     {
