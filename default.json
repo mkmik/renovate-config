@@ -3,6 +3,7 @@
   "description": "Defaults for renovatebot",
   "extends": [
     "config:base",
+    ":disableDependencyDashboard",
     ":maintainLockFilesWeekly",
     ":rebaseStalePrs",
     "docker:pinDigests",
