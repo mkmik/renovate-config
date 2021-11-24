@@ -15,6 +15,7 @@
   "includeForks": false,
   "labels": ["dependencies"],
   "automergeType": "branch",
+  "postUpdateOptions": ["gomodTidy", "gomodUpdateImportPaths", "npmDedupe", "yarnDedupeFewer"],
   "packageRules": [
     {
       "description": "Automerge trivial updates",
