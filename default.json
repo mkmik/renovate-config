@@ -26,6 +26,12 @@
       "description": "Group Kubernetes packages",
       "matchPackagePatterns": ["^kubernetes/", "^k8s\\.gcr\\.io/"],
       "groupName": "Kubernetes packages"
+    },
+    {
+      "description": "Updates daily with mostly noise",
+      "matchPackageNames": ["github.com/aws/aws-sdk-go"],
+      "groupName": "aws-sdk",
+      "extends": ["schedule:weekly"]
     }
   ],
   "regexManagers": [
