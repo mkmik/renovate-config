@@ -11,7 +11,7 @@
     "group:recommended",
     "helpers:pinGitHubActionDigests"
   ],
-  "assignees": ["anguslees"],
+  "assignees": ["mkmik"],
   "includeForks": false,
   "labels": ["dependencies"],
   "automergeType": "branch",
