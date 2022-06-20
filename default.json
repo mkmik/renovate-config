@@ -36,27 +36,12 @@
   ],
   "regexManagers": [
     {
-      "description": "Update _VERSION variables in Dockerfiles",
-      "fileMatch": ["(^|/|\\.)Dockerfile$", "(^|/)Dockerfile\\.[^/]*$"],
+      "description": "Update image references in jsonnet files",
+      "fileMatch": ["^.*.jsonnet$"],
       "matchStrings": [
-        "# renovate: datasource=(?<datasource>[a-z-]+?) depName=(?<depName>.+?)(?: lookupName=(?<lookupName>.+?))?(?: versioning=(?<versioning>[a-z-]+?))?\\s(?:ENV|ARG) .+?_VERSION=(?<currentValue>.+?)\\s"
+        "\"image\": \"(?<depName>.*?):(?<currentValue>.*?)@(?<currentDigest>sha256:[a-f0-9]+)\""
       ],
-      "versioningTemplate": "{{#if versioning}}{{versioning}}{{else}}semver{{/if}}"
+      "datasourceTemplate": "docker"
     },
-    {
-      "description": "Update _VERSION variables in shell scripts",
-      "fileMatch": ["\\.sh$"],
-      "matchStrings": [
-        "# renovate: datasource=(?<datasource>[a-z-]+?) depName=(?<depName>.+?)(?: lookupName=(?<lookupName>.+?))?(?: versioning=(?<versioning>[a-z-]+?))?\\s[A-Z_]+?_VERSION=(?<currentValue>.+?)\\s"
-      ],
-      "versioningTemplate": "{{#if versioning}}{{versioning}}{{else}}semver{{/if}}"
-    },
-    {
-      "description": "Update version: variables in workflows",
-      "fileMatch": ["^\\.github\\/workflows\\/[^/]+\\.ya?ml$"],
-      "matchStrings": [
-        "\\s+version: (?<currentValue>.+?) #renovate: datasource=(?<datasource>[a-z-]+?) depName=(?<depName>.+?)(?: lookupName=(?<lookupName>.+?))?(?: versioning=(?<versioning>[a-z-]+?))?\\s"
-      ]
-    }
   ]
 }
